@@ -1,6 +1,6 @@
 # Assembly_Armv8
 
-## What each program does? 
+## What does each program do? 
 
 1. [Add](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Add). 
     Sum all elements in an array, given the array and the number of the elements as operands of the function. 
