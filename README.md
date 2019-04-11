@@ -12,9 +12,9 @@
     Find max and min numbers in a vector. 
 
 4. [CLZ](https://github.com/Jumaruba/Assembly_Armv8/tree/master/CLZ) _(exercise 5)_   
-      a) find the position of the less significative number 
-      b) 
-      c) 
+      a) find the position of the less significative number  
+      b)   
+      c)   
       
-5. [Overflow](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Overflow) _(exercise 7)_ 
+5. [Overflow](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Overflow) _(exercise 7)_   
     d) Intern product of a file
