@@ -4,12 +4,12 @@
 
 extend:
 
-ciclo:	ldr x2, [x0]
-		sxtw x3, w2
-		str x3, [x1]
-		add x0, x0, 8
-		add x1,x1 ,8
-		cmp x3, 0
-		b.ne ciclo
-		ret
+ciclo:	cbz x2, fim
+		ldrsw x9, [x0]
+		str x9, [x1]
+		add x0, x0 , 4
+		add x1, x1, 8
+		sub x2, x2, 1
+		b ciclo
 
+fim: 	ret
