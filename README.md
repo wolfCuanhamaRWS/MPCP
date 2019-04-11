@@ -13,3 +13,8 @@
 
 4. [CLZ](https://github.com/Jumaruba/Assembly_Armv8/tree/master/CLZ)  
       a) find the position of the less significative number _(exercise 5)_ 
+      b) 
+      c) 
+      
+5. [Overflow](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Overflow) 
+    d) Intern product of a file _(exercise 7)_ 
