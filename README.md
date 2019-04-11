@@ -11,5 +11,5 @@
 3. [Max](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Max)   
     Find max and min numbers in a vector. _(exercise 2)_ 
 
-4. [CLZ](https://github.com/Jumaruba/Assembly_Armv8/tree/master/CLZ)
+4. [CLZ](https://github.com/Jumaruba/Assembly_Armv8/tree/master/CLZ)  
       a) find the position of the less significative number _(exercise 5)_ 
