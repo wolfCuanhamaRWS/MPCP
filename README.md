@@ -8,5 +8,8 @@
 2. [Extend](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Extend)  
     Copy all elements from an array to another with signal. The array source is a long int array and the target is a long long int array. The end of the array is determined by the number 0. _(exercise 4.b)_
 
-3.[Max](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Max) 
+3. [Max](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Max)   
     Find max and min numbers in a vector. _(exercise 2)_ 
+
+4. [CLZ](https://github.com/Jumaruba/Assembly_Armv8/tree/master/CLZ)  
+      a) find the position of the less significative number _(exercise 5)_ 
