@@ -234,11 +234,41 @@
 	#x2 = capicua or not
 	
 	NCAP:
-	REV w1, w0
+	RBIT w1, w0
 	CMP w1, w0
 	CSET x2, EQ
 	MOV x0, x2
 	RET 
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+	
+# 6.Implementar as instruções seguintes com base em instruções de manipulação ou extração de bits.
+
+#LETTER A
+
+ LSL x10, x12, #8 
+ 
+ # We may use `UBFIZ` _(unsignal bit field insert in zero)_ as alternative:  
+   
+ UBFIZ x10, x12, #8, #56
+ 
+#LETTER B 
+
+ ASR x10, x12, #8 
+   
+ # We may use  SBFX (signal bit field extract) as alternative:   
+   
+SBFX x10, x12, #8, #56
+
+#LETTER C
+
+ROR w13, w14, #3 
+
+# this is the instruction rotate right  
+  
+ubfiz w13, w14, #3, #29
+bfi w13, w14, #3, #29
+
 	
 #--------------------------------------------------------------------------------------------------------------------------------------
 # 9.Considerar que o valor inicial de `W0 é 0x12345678`. Determinar o valor de W1 (ou X1) após a execução
