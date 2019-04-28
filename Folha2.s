@@ -106,7 +106,141 @@
 	END:	MOV x0, x5
 		RET 
 
+#--------------------------------------------------------------------------------------------------------------------------------------
+# 3. Pretende-se escrever programas que executam tarefas envolvendo uma cadeia de carateres terminada
+# por zero ( ’\0’ ).
+# a) Determinar o comprimento de uma cadeia de carateres.
+# b) Determinar o número de ocorrências de um caráter numa cadeia de carateres.
+# c) Determinar o número de vogais de uma cadeia de carateres.
+# d) Determinar o número de letras maiúsculas de uma cadeia de carateres.
+# e) Palíndromo é uma palavra, grupo de palavras ou verso em que o sentido é o mesmo, quer se
+# leia da esquerda para a direita quer da direita para a esquerda (ex.: "ANOTARAM A DATA DA
+# MARATONA").
+# Implementar um programa que determine se uma cadeia de carateres é palíndromo. Assumir
+# que a cadeia de carateres não inclui espaços nem sinais de pontuação e que é indiferente o uso
+# de letras maiúsculas e minúsculas. A sub-rotina devolve 1 em caso afirmativo ou 0 no caso
+# contrário.
+# f) Contar quantas palavras tem uma cadeia de carateres, assumindo que há um único espaço entre
+# palavras consecutivas.
 
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+# 4. Implementar e testar programas que realizem as seguintes tarefas:
+# a) Copiar um vetor com valores (sem sinal) do tipo byte para um vetor com valores do tipo doubleword .
+# b) Copiar um vetor com valores (com sinal) do tipo word para um vetor com valores do tipo
+# doubleword .
+
+#LETTER A 
+
+	#x0 = vector font
+	#x1 = arrival vector
+	#x2 = vector font size
+	#x3 = actual value
+
+	FUNC: 	
+	CICLO:	CBZ x2, END
+		LDRB w3, [x0] 
+		UXTB x3, w3
+		STR w3, [x2] 
+		ADD x0, x0, #1
+		ADD x1, x1, #8	
+		SUB x2, x2, #1
+		B CICLO
+	END: 	RET 
+
+# LETTER B
+
+	#C CODE
+	
+	#include <stdio.h>
+	extern void extend(int* n2, long int* n, int dim);
+
+	int main(void)
+	{
+		int vetor1[] = {1,2,-3,-4,-5,0};
+		long int vetor2[6];
+
+		extend(vetor1, vetor2, 6);
+
+		for (int i = 0; i< 6; i++){
+			printf("v[%d] = %lld\n", i, vetor2[i]);
+		}
+		return 0;
+
+	}
+
+	#ASSEMBLY CODE
+
+	.global extend;
+	.type extend, %function
+	.text
+
+	extend:
+
+	#x0 = vector font
+	#x1 = arrival vector
+	#x2 = vector font size
+	#x3 = actual value
+
+ 
+	CICLO: 	CBZ x2, END
+		LDRSW x3, [x0]	
+		SXTW x3, w3 
+		STR x3, [x1]
+		ADD x0, x0, #4
+		ADD x1, x1, #8
+		SUB x2, x2, #1
+		B CICLO
+	END:	RET 
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+#5. Escrever e testar sub-rotinas considerando os respetivos protótipos da função a invocar em C.
+# a) Determinar a posição do bit 1 mais significativo da representação binária de um número.
+# int POS1msb(long int n);
+
+# b) Verificar se uma cadeia de 8 carateres (tamanho de uma doubleword) é palíndromo. A resposta
+# será 1 em caso afirmativo e 0 no caso contrário.
+# int PAL8(char *s);
+
+# c) Verificar se a representação binária de um número é capicua (número palíndromo). A resposta
+# será 1 em caso afirmativo e 0 no caso contrário.
+# int NCAP(int n);
+
+#LETTER A 
+
+	POS1msb:
+		
+	CLZ x0, x0
+	RET
+
+#LETTER B 
+
+	# x0 = char
+	# x1 = reversed char
+	# x2 = palindrom or not
+	
+	PAL8:
+	
+	REV x1, x0
+	CMP x1, x0
+	CSET x2, EQ
+	MOV x0, x2
+	RET 
+
+#LETTER C
+	
+	#x0 = int
+	#x1 = reversed number
+	#x2 = capicua or not
+	
+	NCAP:
+	REV w1, w0
+	CMP w1, w0
+	CSET x2, EQ
+	MOV x0, x2
+	RET 
+	
+#--------------------------------------------------------------------------------------------------------------------------------------
 # 9.Considerar que o valor inicial de `W0 é 0x12345678`. Determinar o valor de W1 (ou X1) após a execução
 # de cada fragmento de código.
   
