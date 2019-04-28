@@ -210,8 +210,11 @@
 
 	POS1msb:
 		
-	CLZ x0, x0
-	RET
+	clz x2, x0  ; counting leading zeros by left
+	mov x3, 63
+	sub x0, 63
+	sub x0, x3, x2
+	ret
 
 #LETTER B 
 
