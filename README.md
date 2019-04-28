@@ -1,20 +1,35 @@
-# Assembly_Armv8
+# Considerar que o valor inicial de `W0 é 0x12345678`. Determinar o valor de W1 (ou X1) após a execução
+# de cada fragmento de código.
+  
 
-## What does each program do? 
-
-1. [Add](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Add)  _(exercise 1)_    
-    Sum all elements in an array, given the array and the number of the elements as operands of the function.
+# letter a 
+    # w0 = 0001 0010 0011 0100 0101 0110 0111 1000
     
-2. [Extend](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Extend)  
-    Copy all elements from an array to another with signal. The array source is a long int array and the target is a long long int array. The end of the array is determined by the number 0. _(exercise 4.b)_
+    MOV W1, #0xABCD0000  ;w1 = 1010 1011 1100 1101 0000 0000 0000 0000  
+    UBFX W2, W0, #24, #8 ;w2 = 0000 0000 0000 0000 0000 0000 0001 0010
+    BFI W1, W2, #16, #8  ;w1 = 1010 1011 0001 0010 0000 0000 0000 0000
+ 
 
-3. [Max](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Max) _(exercise 2)_      
-    Find max and min numbers in a vector. 
+# letter b
+  
+    # w0 = 0001 0010 0011 0100 0101 0110 0111 1000
+    
+    REV W1, W0                ;w1 = 0x78564312   w1 = 0111 1000 0101 0110 0011 0100 0001 0010
+    AND W1, W1, W1, ASR #16   ;w1' = 1000 0000 0000 0000 0111 1000 0101 0110 -- W1, ASR #16
+                              ;w1 =  0111 1000 0101 0110 0011 0100 0001 0010
+                              ;w1 =  0000 0000 0000 0000 0011 0000 0001 0010 -- NEW W1 = 0X78564012
+    REV W1, W1                ;w1 =  0001 0010 0011 0000 0000 0000 0000 0000
+    SUB W1, W0, W1            ;w0 =  0001 0010 0011 0100 0101 0110 0111 1000
+                              ;w0 =  0000 0000 0000 0100 0101 0110 0111 1000                                     
+    
+ 
+    
+    
+# letter c 
 
-4. [CLZ](https://github.com/Jumaruba/Assembly_Armv8/tree/master/CLZ) _(exercise 5)_   
-      a) find the position of the less significative number  
-      b)   
-      c)   
-      
-5. [Overflow](https://github.com/Jumaruba/Assembly_Armv8/tree/master/Overflow) _(exercise 7)_   
-    d) Intern product of a file
+    # w0 = 0001 0010 0011 0100 0101 0110 0111 1000
+    
+    EON X1, X1, X1                ;x1 = 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 
+    ADD X1, X1, W0, SXTB #4       ;w0 = 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0111 1000 0000
+                                  ;x1 = 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0111 0111 1111
+  
