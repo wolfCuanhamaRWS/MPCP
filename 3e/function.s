@@ -15,7 +15,7 @@ max_word:
 			mov w2, -1
 			mov w4, 0
 			mov w3, #32
-inicio: 	add w2, w2, 1
+inicio: 		add w2, w2, 1
 			ldrb w1, [x0, x2]
 			cmp w1, '0'
 			beq diminui
@@ -24,12 +24,12 @@ inicio: 	add w2, w2, 1
 			b inicio
 
 
-soma: 		sub w1, w1, w3
+soma: 			sub w1, w1, w3
 			strb w1, [x0, x2]
 			b inicio
 
-diminui: 	sub w2,w2,1
-proximo:	cmp w2, #-1
+diminui: 		sub w2,w2,1
+proximo:		cmp w2, #-1
 			beq end
 			ldrb w1, [x0, x2]
 			ldrb w3, [x0, x4]
@@ -38,10 +38,10 @@ proximo:	cmp w2, #-1
 			add w4, w4, 1
 			sub w2, w2, 1
 			b proximo
-end:		mov w0, #1
+end:			mov w0, #1
 			ret
 
-n_palindrome: 	mov w0, #0
-				ret
+n_palindrome: 		mov w0, #0
+			ret
 
 
