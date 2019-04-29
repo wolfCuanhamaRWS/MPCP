@@ -40,6 +40,7 @@ END: 			MOV x7, x11
 
 # LETTER B
 MEDIA: 			STP x29, x30, [SP, #-16]!
+			MOV x29, SP
 			BL SOMA
 			UDIV x7, x7, x1
 			LDP x29, x30, [SP], #16
@@ -49,6 +50,7 @@ MEDIA: 			STP x29, x30, [SP, #-16]!
 		
 #LETTER C
 MAXMED: 		STP x29, x30, [SP, #-16]!
+			MOV X29, SP
 			BL MEDIA
 			MOV x6, x7
 			MOV x0, x2
