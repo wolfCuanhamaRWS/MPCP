@@ -1,3 +1,55 @@
+# 4. Utilizando a pilha, escrever um programa que:
+# a) imprime uma cadeia de carateres por ordem inversa.
+
+# b) verica se uma sequência de carateres tem parêntesis curvos, parêntesis retos e chavetas corre-
+# tamente emparelhadas.
+
+#LETTER A 
+
+# x0 = cadeia de caracteres (preservado)
+# x1 = dimensão da cadeia (preservado)
+
+	#x0 = vector 1
+	#x1 = tamanho da sequencia 1
+	#x2 = vector 2
+	#x3 = tamanho da sequencia 2
+
+
+	#x20 = tamanho da sequencia 1
+	#x21 = tamanho da sequencia 2
+	#x22 = media do vector 1
+
+
+
+max_word: 		stp x29, x30, [sp, #-16]!
+			mov x29, sp
+			mov x20, x0
+			mov x21, x1
+
+CICLO:			cbz w1, PROX
+			ldrb w2, [x0]
+			str w2, [SP, #-16]!
+			add w0, w0, #1
+			sub w1, w1, #1
+			b CICLO
+
+PROX: 			mov x0, x20
+			mov x1, x21
+
+CICLO2:			cbz w1, END
+			ldr w2, [sp], #16
+			strb w2, [x0]
+			add w0, w0, #1
+			sub w1, w1, #1
+			b CICLO2
+
+END:			mov sp, x29
+			ldp x29, x30, [sp], #16
+			ret
+
+
+		
+#-------------------------------------------------------------------------------------------------------------------------
 # 5. Escrever e testar as seguintes sub-rotinas:
 # a) SOMA – calcula a soma dos elementos de um vetor.
 # b) MEDIA – calcula a média dos elementos de um vetor utilizando a sub-rotina SOMA .
