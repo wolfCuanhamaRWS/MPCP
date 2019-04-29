@@ -43,6 +43,7 @@ MEDIA: 			STP x29, x30, [SP, #-16]!
 			MOV x29, SP
 			BL SOMA
 			UDIV x7, x7, x1
+			MOV SP, x29
 			LDP x29, x30, [SP], #16
 			RET
 	
@@ -58,6 +59,7 @@ MAXMED: 		STP x29, x30, [SP, #-16]!
 			BL MEDIA
 			CMP x6, x7
 			CSEL x7, x7, x6, PL
+			MOV SP, x29
 			LDP x29, x30, [SP], #16
 			RET
 
