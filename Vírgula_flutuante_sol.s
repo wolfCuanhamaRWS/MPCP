@@ -1,5 +1,5 @@
-# Folha de vírgula flutuante  
-#Resoluções conferidas da folha de vírgula flutuante em assembly arm-v8.  
+# FOLHA DE VÍRGULA FLUTUANTE
+ 
 #Questão 1- Escrever fragmentos de código assembly AArch64 que implementem o seguinte código C++: 
   
 # a)   double B = 7.8 , M = 3.6 , N = 7.1;  
