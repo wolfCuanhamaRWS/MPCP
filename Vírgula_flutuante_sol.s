@@ -272,7 +272,7 @@ end:
 			ldp x29, x30, [sp], #16
 			ret
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 #Questão 7 - double rotF(double x)
@@ -309,3 +309,61 @@ lessthan:
 		scvtf d1,x1
 		fdiv d0,d1,d0
 		b end
+		
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Questão 8 - double erfpos(double x)
+
+.data
+
+a1: .double 0.278393
+a2: .double 0.230389
+a3: .double 0.000972
+a4: .double 0.078108
+
+.global erfpos
+.type erfpos, "function"
+.text
+
+#d1 = constantes
+#d2 = resultado
+
+
+erfpos:
+	stp x29,x30,[sp,#-16]!
+	ldr d1, a1
+	fmov d2, #1
+	fmul d1,d0,d1 //a1*x
+	fadd d2, d1,d2 //1 + a1*x
+
+	ldr d1, a2
+	fmul d1, d1,d0	// a2*x
+	fmul d1,d1,d0 	// a2*x^2
+	fadd d2,d1,d2 	// 1 + a1*x + a2*x^2
+
+	ldr d1, a3
+	fmul d1,d1,d0	//a3*x
+	fmul d1,d1,d0	//a3*x^2
+	fmul d1,d1,d0	//a3*x^3
+	fadd d2,d2,d1	// 1 + a1*x + a2*x^2 + a3*x^3
+
+	ldr d1,a4
+	mov x0, #4
+loop:
+	cbz x0, next_1
+	fmul d1,d1,d0	//a4*x^4
+	b loop
+next:
+	fadd d2,d1,d0 //// 1 + a1*x + a2*x^2 + a3*x^3 + a4*x^4
+
+	fmul d3,d2,d2
+	fmul d3,d2,d3
+	fmul d3,d2,d3
+	fmov d2,d3
+	fmov d4,1
+	fdiv d2,d4,d2
+	fsub d0,d4,d2
+
+	ldp x29,x30,[sp],#16
+	ret
+
