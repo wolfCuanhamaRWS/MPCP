@@ -1,11 +1,9 @@
-##Folha de vírgula flutuante  
-Resoluções conferidas da folha de vírgula flutuante em assembly arm-v8.  
-__Questão 1-__ Escrever fragmentos de código assembly AArch64 que implementem o seguinte código C++: 
+# Folha de vírgula flutuante  
+#Resoluções conferidas da folha de vírgula flutuante em assembly arm-v8.  
+#Questão 1- Escrever fragmentos de código assembly AArch64 que implementem o seguinte código C++: 
   
-a)  double B = 7.8 , M = 3.6 , N = 7.1;  
-	double P = -M * ( N + B );  
-
-``` 
+# a)   double B = 7.8 , M = 3.6 , N = 7.1;  
+#	double P = -M * ( N + B );  
 
 
 .data
@@ -29,11 +27,11 @@ max_word: 	LDR d0, VB
 			RET
 
 
-``` 
 
-b) int W = 7; double X = 7.1;  
-double Y = sqrt ( X ) + W ;  
-``` 
+
+# b) int W = 7; double X = 7.1;  
+# double Y = sqrt ( X ) + W ;  
+
 .data
 W: .int 7
 X: .double 7.1
@@ -51,4 +49,3 @@ FSQRT d0, d0
 UCVTP d1, w0
 FADD d0, d0,d1
 RET 
-````
