@@ -19,7 +19,7 @@ VN: .double 7.1
 #d1: M
 #d2: N
 
-max_word: 	LDR d0, VB
+max_word: 		LDR d0, VB
 			LDR d1, VM
 			LDR d2, VN
 			FADD d2,d2,d0
@@ -43,12 +43,12 @@ X: .double 7.1
 
 max_word: 
 
-LDR w0, W
-LDR d0, X
+		LDR w0, W
+		LDR d0, X
 
-FSQRT d0, d0
-UCVTP d1, w0
-FADD d0, d0,d1
+		FSQRT d0, d0
+		UCVTP d1, w0
+		FADD d0, d0,d1
 RET 
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -69,17 +69,17 @@ const: .double 3
 
 max_word:
 
-LDR d0, A
-LDR d1, B
-LDR d2, C
-LDR d3, D
-LDR d4, const
+		LDR d0, A
+		LDR d1, B
+		LDR d2, C
+		LDR d3, D
+		LDR d4, const
 
-FSUB d1, d0, d1
-FMUL d1, d2, d1
-FADD d0, d0, d3
-FSUB d0, d0, d4
-FDIV d0, d1, d0
+		FSUB d1, d0, d1
+		FMUL d1, d2, d1
+		FADD d0, d0, d3
+		FSUB d0, d0, d4
+		FDIV d0, d1, d0
 RET
 
 #--------------------------------------------------------------------------------------------------------------------------
@@ -94,11 +94,11 @@ pi:  3,141592653
 
 max_word:
 
-STP x29, x30, [sp, #-16]!
-LDR d1, pi
-FMUL d0,d0,d0
-FMUL d0,d0,d1 
-LDP x29, x30, [sp], #16 
+		STP x29, x30, [sp, #-16]!
+		LDR d1, pi
+		FMUL d0,d0,d0
+		FMUL d0,d0,d1 
+		LDP x29, x30, [sp], #16 
 RET 
 #--------------------------------------------------------------------------------------------------------------------------
 # c)
@@ -115,17 +115,17 @@ y2: .double 3
 
 max_word:
 
-LDR d0, x1
-LDR d1, x2
-LDR d2, y1
-LDR d3, y2
+		LDR d0, x1
+		LDR d1, x2
+		LDR d2, y1
+		LDR d3, y2
 
-FSUB d0, d0, d1
-FSUB d2, d2, d3
-FMUL d0,d0,d0
-FMUL d2,d2,d2
-FADD d0,d0,d2
-FSQRT d0,d0
+		FSUB d0, d0, d1
+		FSUB d2, d2, d3
+		FMUL d0,d0,d0
+		FMUL d2,d2,d2
+		FADD d0,d0,d2
+		FSQRT d0,d0
 RET
 
 
@@ -151,15 +151,15 @@ const_0.1: .float 0.1
 .text
 
 max_word:
-stp x29,x30,[sp,#-16]!
+		stp x29,x30,[sp,#-16]!
 
-ldr s7, const_1.5
-ldr s8, const_12.5
-ldr s9, const_7
-ldr s10, const_0
-ldr s11, const_0.1
-mov x1, 101  //contador
-fmov s1, s10
+		ldr s7, const_1.5
+		ldr s8, const_12.5
+		ldr s9, const_7
+		ldr s10, const_0
+		ldr s11, const_0.1
+		mov x1, 101  //contador
+		fmov s1, s10
 
 begin:
 		cbz x1, end
@@ -174,7 +174,7 @@ begin:
 		fadd s1, s1, s11
 		sub x1, x1, 1
 		b begin
-end: 	ldp x29, x30, [sp], #16
+end: 		ldp x29, x30, [sp], #16
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -186,24 +186,60 @@ end: 	ldp x29, x30, [sp], #16
 
 max_word:
 
-stp x29, x30, [sp, #16]! 
-ldp d1, [x0]  //d1: carrega os valores das constantes  
-fmul d2, d1, d0 
-add x0,x0,#8 
-ldp d1, [x0] 
-fadd d2, d2, d1
-sub w1, w1, 2
-add x0, x0, #8 
+		stp x29, x30, [sp, #16]! 
+		ldp d1, [x0]  //d1: carrega os valores das constantes  
+		fmul d2, d1, d0 
+		add x0,x0,#8 
+		ldp d1, [x0] 
+		fadd d2, d2, d1
+		sub w1, w1, 2
+		add x0, x0, #8 
 
 loop: 
 
-cbz w1, end 
-ldr d1, [x0] 
-fmul d2, d2, d0 
-sub w1, w1, 1
-add x0, x0, 8
-b loop 
+		cbz w1, end 
+		ldr d1, [x0] 
+		fmul d2, d2, d0 
+		sub w1, w1, 1
+		add x0, x0, 8
+		b loop 
 
-end:	mov d0, d2
+end:		mov d0, d2
 		ldp x29,x30, [sp], 16
 		ret 
+		
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Questão 5 - double prodint(float *X, float *Y, int n). Calcular o produto vetorial:
+
+.data
+
+const_0: .double 0
+
+.global max_word
+.type max_word, "function"
+.text
+
+max_word: 		stp x29, x30, [sp, #-16]!
+			ldr d0, const_0
+
+loop:			cbz w2, end  //w2 = contador
+
+			ldr s1, [x0] //carrega valor de x
+			ldr s2, [x1] //carrega valor de y
+
+			//convertendo tudo para double
+			fcvt d1, s1
+			fcvt d2, s2
+			//operação
+			fmul d3, d1, d2
+			fadd d0, d3, d0
+			 //fazendo update do contador
+			sub w2,w2, 1
+			add x0, x0, 4
+			add x1, x1, 4
+			b loop
+end: 			ldp x29, x30, [sp], #16
+			ret
+
