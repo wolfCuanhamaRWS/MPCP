@@ -146,11 +146,11 @@ const_7: .float 7
 const_0: .float 0
 const_0.1: .float 0.1
 
-.global max_word
-.type max_word, "function"
+.global calc_poly_tab
+.type calc_poly_tab, "function"
 .text
 
-max_word:
+calc_poly_tab:
 		stp x29,x30,[sp,#-16]!
 
 		ldr s7, const_1.5
@@ -180,11 +180,11 @@ end: 		ldp x29, x30, [sp], #16
 
 # Questão 4 - double HORNER(double x, double *coefs, int n)
 
-.global max_word
-.type max_word, "function"
+.global HORNER
+.type HORNER, "function"
 .text
 
-max_word:
+HORNER:
 
 		stp x29, x30, [sp, #16]! 
 		ldp d1, [x0]  //d1: carrega os valores das constantes  
@@ -217,11 +217,11 @@ end:		mov d0, d2
 
 const_0: .double 0
 
-.global max_word
-.type max_word, "function"
+.global prodint
+.type prodint, "function"
 .text
 
-max_word: 		stp x29, x30, [sp, #-16]!
+prodint: 		stp x29, x30, [sp, #-16]!
 			ldr d0, const_0
 
 loop:			cbz w2, end  //w2 = contador
@@ -241,5 +241,34 @@ loop:			cbz w2, end  //w2 = contador
 			add x1, x1, 4
 			b loop
 end: 			ldp x29, x30, [sp], #16
+			ret
+
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Questão 6- long int conta_intervalo(float *V, long int n, float a, float b)
+
+.global conta_intervalo
+.type conta_intervalo, "function"
+.text
+
+conta_intervalo:
+			stp x29, x30,[sp, #16]!
+			mov x2, #0 		//x2 = contador
+loop:
+			cbz x1, end
+			ldr s3, [x0]
+			fcmp s3,s0
+			b.lt proximo 	//caso s3 <a
+			fcmp s3, s1
+			b.gt proximo	//caso s3 >b
+			add x2,x2,1	//caso esteja no intervalo
+proximo:		add x0,x0,#4	//proximo elemento do vector
+			sub x1,x1,#1	//atualiza o loop
+			b loop
+
+end:
+			mov x0, x2
+			ldp x29, x30, [sp], #16
 			ret
 
