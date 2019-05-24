@@ -49,3 +49,34 @@ FSQRT d0, d0
 UCVTP d1, w0
 FADD d0, d0,d1
 RET 
+
+#-------------------------------------------------------------------------------------------------------------------------
+#Questão 2 - 
+
+#a) Escrever um programa para calcular:
+
+.data
+A: .double 1.5
+B: .double 2.5
+C: .double 2.0
+D: .double 0.5
+const: .double 3
+
+.global max_word
+.type max_word, "function"
+.text
+
+max_word:
+
+LDR d0, A
+LDR d1, B
+LDR d2, C
+LDR d3, D
+LDR d4, const
+
+FSUB d1, d0, d1
+FMUL d1, d2, d1
+FADD d0, d0, d3
+FSUB d0, d0, d4
+FDIV d0, d1, d0
+RET
