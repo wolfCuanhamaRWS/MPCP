@@ -1,6 +1,6 @@
 # FOLHA DE VÍRGULA FLUTUANTE
  
-#Questão 1- Escrever fragmentos de código assembly AArch64 que implementem o seguinte código C++: 
+# Questão 1- Escrever fragmentos de código assembly AArch64 que implementem o seguinte código C++: 
   
 # a)   double B = 7.8 , M = 3.6 , N = 7.1;  
 #	double P = -M * ( N + B );  
@@ -28,6 +28,7 @@ max_word: 	LDR d0, VB
 
 
 
+#--------------------------------------------------------------------------------------------------------------------------
 
 # b) int W = 7; double X = 7.1;  
 # double Y = sqrt ( X ) + W ;  
@@ -50,10 +51,10 @@ UCVTP d1, w0
 FADD d0, d0,d1
 RET 
 
-#-------------------------------------------------------------------------------------------------------------------------
-#Questão 2 - 
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Questão 2 -  Escrever um programa para calcular:
 
-#a) Escrever um programa para calcular:
+#a)
 
 .data
 A: .double 1.5
