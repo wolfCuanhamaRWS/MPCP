@@ -81,3 +81,23 @@ FADD d0, d0, d3
 FSUB d0, d0, d4
 FDIV d0, d1, d0
 RET
+
+#--------------------------------------------------------------------------------------------------------------------------
+# b) 
+
+.data
+pi:  3,141592653
+
+.global max_word
+.type max_word, "function"
+.text
+
+max_word:
+
+STP x29, x30, [sp, #-16]!
+LDR d1, pi
+FMUL d0,d0,d0
+FMUL d0,d0,d1 
+STP x29, x30, [sp], #16 
+RET 
+
