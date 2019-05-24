@@ -175,3 +175,35 @@ begin:
 		sub x1, x1, 1
 		b begin
 end: 	ldp x29, x30, [sp], #16
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Questão 4 - double HORNER(double x, double *coefs, int n)
+
+.global max_word
+.type max_word, "function"
+.text
+
+max_word:
+
+stp x29, x30, [sp, #16]! 
+ldp d1, [x0]  //d1: carrega os valores das constantes  
+fmul d2, d1, d0 
+add x0,x0,#8 
+ldp d1, [x0] 
+fadd d2, d2, d1
+sub w1, w1, 2
+add x0, x0, #8 
+
+loop: 
+
+cbz w1, end 
+ldr d1, [x0] 
+fmul d2, d2, d0 
+sub w1, w1, 1
+add x0, x0, 8
+b loop 
+
+end:	mov d0, d2
+		ldp x29,x30, [sp], 16
+		ret 
