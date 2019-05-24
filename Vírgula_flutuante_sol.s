@@ -272,3 +272,40 @@ end:
 			ldp x29, x30, [sp], #16
 			ret
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+#Questão 7 - double rotF(double x)
+
+.data
+pi: .double 3.141592653
+
+.global rotF
+.type rotF, "function"
+.text
+
+rotF:
+		stp x29,x30,[sp,#-16]!
+		fcmp d0, #0
+		blt lessthan  //caso seja menor que zero
+		
+		ldr d1, pi
+		fadd d0,d1,d0
+		fmul d2, d0,d0
+		fmul d2,d2,d0
+		fsqrt d2,d2
+end:	
+		fmov d0,d2
+		ldp x29,x30,[sp],#16
+		ret
+
+lessthan:
+		mov x1, 4
+		scvtf d1, x1
+		fsub d0,d0,d1
+		fneg d0,d0
+		fsqrt d0,d0
+		mov x1, 1
+		scvtf d1,x1
+		fdiv d0,d1,d0
+		b end
