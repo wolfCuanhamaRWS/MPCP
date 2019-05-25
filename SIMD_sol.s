@@ -10,7 +10,8 @@
 
 somaV: 
         lsr x3, x3, 2  //estamos fazendo 4 operações em um ciclo 
-ciclo:  cbz x3, end
+ciclo:  
+        cbz x3, end
         ldr q0, [x0], #16
         ldr q1, [x1], #16
         
