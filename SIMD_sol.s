@@ -95,4 +95,27 @@ ciclo: 	cbz x2, end
 end: 	mov x0,x4
 	ldp x29,x30,[sp],#16
 	ret
+	
+	
+#Questão 4- void incsatV(int *Z, int n, int x) - x0,x1,x2
+
+
+incsatV:
+
+	stp x29,x30,[sp,#-16]!
+	lsr x1,x1,#2
+	dup v2.4s,w2	//criando um vetor, onde cada posição assume o valor x
+	
+ciclo:	cbz x1,end
+	ldr q0,[x0]
+	
+	add v0.4s,v0.4s,v2.4s	
+	
+	str q0,[x0]
+	sub x1,x1,1
+	b ciclo
+
+end:	ldp x29,x30,[sp],#16
+	ret 
+	
 
