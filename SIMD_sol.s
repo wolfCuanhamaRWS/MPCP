@@ -70,3 +70,29 @@ ciclo:
 end: 	ldp x29,x30,[sp],#16
 	ret
 
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Questão 2 - long int prodintV(int *R, int *S, int n)
+
+prodintV:
+	stp x29,x30,[sp,#-16]!
+        lsr x2,x2,#2
+        mov x4,#0	//contador
+
+ciclo: 	cbz x2, end
+	ldr q1,[x0],#16
+	ldr q2,[x1],#16
+
+	mul v1.4s,v1.4s,v2.4s
+	addv s3,v1.4s
+
+	smov x3, v3.s[0] 
+
+	add x4,x3,x4
+	sub x2,x2,#1
+	b ciclo
+
+end: 	mov x0,x4
+	ldp x29,x30,[sp],#16
+	ret
+
