@@ -47,3 +47,26 @@ ciclo:
 
 end:    ldp x29,x30,[sp],#16
         ret
+	
+#------------------------------------------------------------------------------------------------------------------------
+#c) void msubV(float *P, float *Q, float *R, int n, float k) - fazer P − k × Q
+
+msubV: 
+	stp x29,x30,[sp,#-16]!
+        lsr x3, x3, 2
+ciclo:
+
+	cbz x3,end
+	ldr q1,[x0],#16
+	ldr q2,[x1],#16
+
+	fmul v3.4s, v2.4s, v0.s[0]  //k*Q
+	fsub v3.4s,v1.4s, v3.4s	 //P -k*Q
+	
+	str q3,[x2],#16	//armazenando o resultado no vetor 
+	sub x3,x3,#1	//atualizando o contador 
+	b ciclo
+
+end: 	ldp x29,x30,[sp],#16
+	ret
+
