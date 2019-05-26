@@ -51,6 +51,10 @@ end:    ldp x29,x30,[sp],#16
 #------------------------------------------------------------------------------------------------------------------------
 #c) void msubV(float *P, float *Q, float *R, int n, float k) - fazer P − k × Q
 
+.global msubV
+.type msubV, "function"
+.text
+
 msubV: 
 	stp x29,x30,[sp,#-16]!
         lsr x3, x3, 2
@@ -73,6 +77,10 @@ end: 	ldp x29,x30,[sp],#16
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Questão 2 - long int prodintV(int *R, int *S, int n)
+
+.global prodintV
+.type prodintV, "function"
+.text
 
 prodintV:
 	stp x29,x30,[sp,#-16]!
@@ -100,6 +108,9 @@ end: 	mov x0,x4
 	
 #Questão 4- void incsatV(int *Z, int n, int x) - x0,x1,x2
 
+.global incsatV
+.type incsatV, "function"
+.text
 
 incsatV:
 
