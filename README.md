@@ -13,6 +13,6 @@ Este repositório contém soluções em assembly (arm_v8) para exercícios propo
   - [`Este`](Instructions/ARM.Reference_Manual.pdf) documento explica a documentação de forma resumida e __não contém operações com vectors__. 
   - [`Este`](Instructions/DUI0801I_armasm_user_guide.pdf) documento é o guia __completo__ de arm_v8 incluindo instruções SIMD.
   - [`Este`](Instructions/InstructionsTable.v5.2.pdf) documento é a __tabela completa__ das instruções de arm_v8.
-  - [`Este`](Instructions/Tutorial_de_configurac__807_a__771_o_do_DS-5 (2).pdf) é o guia para configurar o ambiente de desenvolvimento para arm_v8 usando eclipse. 
+  - [`Este`](https://github.com/Jumaruba/MPCP/blob/master/Instructions/Tutorial_de_configurac__807_a__771_o_do_DS-5%20(2).pdf) é o guia para configurar o ambiente de desenvolvimento para arm_v8 usando eclipse. 
   - [`Este`](Instructions/the_a64_Instruction_set_100898_0100.pdf) é um guia __um pouco mais detalhado__ de assembly, porém não contém instruções SIMD. 
   
