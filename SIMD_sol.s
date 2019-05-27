@@ -196,12 +196,12 @@ end:	ldp x29,x30,[sp],#16
 	
 #Questão 7 - long int conta_inf(float *V, long int n, float lim) - x0,x1,s0
 
-s1: vector em questão
-s2: vector duplicado de lim
-s3: vector de comparação
-s4: soma do atual vector
-x5: contador 
-x4: soma do atual vector
+#s1: vector em questão
+#s2: vector duplicado de lim
+#s3: vector de comparação
+#s4: soma do atual vector
+#x5: contador 
+#x4: soma do atual vector
 
 .global conta_if
 .type conta_inf, "function"
