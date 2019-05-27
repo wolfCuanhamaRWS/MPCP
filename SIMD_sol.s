@@ -128,7 +128,10 @@ end:
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #Questão 3- long int conta_ocorr(char *V, long int n, char val) -> x0,x1,x2
-#x3: número de ocorrências 
+#x5: número de ocorrências 
+#x6: soma do número de ocorrencias de uma interação 
+#v1: vetor duplicado de val
+
 
 .global conta_ocorr
 .type conta_ocorr, "function"
@@ -136,29 +139,28 @@ end:
 
 conta_ocorr:
 	stp x29,x30,[sp,#-16]!
-	lsr x1,x1,#3 
-	mov x3,#0
-	
-ciclo: 	cbz x1,end
-	ldr q0,[x0],#32
+	lsr x1,x1,#4
+	dup v1.16b, w2		//vetor duplicado de val
+	mov x5,#0		//contador
 
-	dup v1.8b, w2  //duplica o valor para todo o vetor
-	cmeq v2.8b, v1.8b,v0.8b //compara de forma que o vector fique do tipo 111...1|000...0|...
+ciclo:
+	cbz x1,end
+	ldr q0,[x0],#16
 
-	mov x3,#1	
-	dup v1.8b, w3	//criamos um vector 1|1|1|1
-	and v2.8b,v1.8b,v2.8b	//fazemos um and o vector em que a comparação feita
-	addv s3, v2.8b	//somamos todos os 1's deste vector
-		
-	smov x4,v3.b[0]	//movemos o resultado para x4
-	add x3,x4,x4	//adicionamos o resultado ao anterior
+	cmeq v2.16b, v1.16b, v0.16b //comparações multiplas
+	abs v2.16b, v2.16b	//podemos fazer assim ou podemos fazer abs no valor de x6. 
+
+	addv b3,v2.16b	//fazer a soma dos 1's
+	smov x6,v3.b[0]
 	
+	add x5,x5,x6
 	sub x1,x1,#1
 	b ciclo
 
-end:	mov x0,x3
+end:
+	mov x0,x5
 	ldp x29,x30,[sp],#16
-	ret 
+	ret
 
 
 	
