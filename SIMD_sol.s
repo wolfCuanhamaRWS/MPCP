@@ -136,20 +136,21 @@ end:
 
 conta_ocorr:
 	stp x29,x30,[sp,#-16]!
-	lsr x1,x1,#2 
+	lsr x1,x1,#3 
 	mov x3,#0
+	
 ciclo: 	cbz x1,end
-	ldr q0,[x0],#16
+	ldr q0,[x0],#32
 
-	dup v1.4s, w2  //duplica o valor para todo o vetor
-	cmeq v2.4s, v1.4s,v0.4s //compara de forma que o vector fique do tipo 111...1|000...0|...
+	dup v1.8b, w2  //duplica o valor para todo o vetor
+	cmeq v2.8b, v1.8b,v0.8b //compara de forma que o vector fique do tipo 111...1|000...0|...
 
 	mov x3,#1	
-	dup v1.4s, w3	//criamos um vector 1|1|1|1
-	and v2.4s,v1.4s,v2.4s	//fazemos um and o vector em que a comparação feita
-	addv s3, v2.4s	//somamos todos os 1's deste vector
+	dup v1.8b, w3	//criamos um vector 1|1|1|1
+	and v2.8b,v1.8b,v2.8b	//fazemos um and o vector em que a comparação feita
+	addv s3, v2.8b	//somamos todos os 1's deste vector
 		
-	smov x4,v3.s[0]	//movemos o resultado para x4
+	smov x4,v3.b[0]	//movemos o resultado para x4
 	add x3,x4,x4	//adicionamos o resultado ao anterior
 	
 	sub x1,x1,#1
