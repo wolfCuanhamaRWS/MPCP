@@ -185,7 +185,7 @@ ciclo:	cbz x1,end
 	
 	add v0.4s,v0.4s,v2.4s	
 	
-	str q0,[x0]
+	str q0,[x0],#16
 	sub x1,x1,1
 	b ciclo
 
@@ -215,7 +215,7 @@ conta_inf:
 
 ciclo:
 	cbz x1, end
-	ldr q1,[x0],#4
+	ldr q1,[x0],#16
 
 	cmgt v3.4s,v1.4s,v2.4s	//Não existe cmlt (compare less than)
 	addv s4, v3.4s
