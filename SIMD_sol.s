@@ -1,5 +1,5 @@
 #FOLHA DE PROCESSAMENTO PARALELO 
-#Atenção: atualmente o arm não faz soma horizontal em float
+#Atenção: atualmente o arm não faz soma horizontal em float, mas podemos adicionar pares (addp)
 
 # Questão 01 - 
 
