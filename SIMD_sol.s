@@ -191,6 +191,37 @@ ciclo:	cbz x1,end
 
 end:	ldp x29,x30,[sp],#16
 	ret 
+	
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#Questão 5 - void mirrorSeq(float *pt, int n) - x0,w1
+
+.global mirrorSeq
+.type mirrorSeq,"function"
+.text
+
+mirrorSeq: 
+	stp x29,x30,[sp,#-16]! 
+	lsr w1,w1,#2
+
+ciclo:	
+	cbz w1,end
+	ldr q1,[x0]
+	
+	//trocando a posição das variaveis
+	ins v0.s[0], v1.s[1]
+	ins v0.s[1], v1.s[0]
+	ins v0.s[2], v1.s[3]
+	ins v0.s[3], v1.s[2] 
+
+	str q0,[x0],#16
+	sub w1,w1,1
+	b ciclo
+
+end:	
+	ldp x29,x30,[sp],#16
+	ret
+
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
