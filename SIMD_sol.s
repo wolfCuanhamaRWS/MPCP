@@ -129,6 +129,7 @@ end:
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #Questão 3- long int conta_ocorr(char *V, long int n, char val) -> x0,x1,x2
+
 #x5: número de ocorrências 
 #x6: soma do número de ocorrencias de uma interação 
 #v1: vetor duplicado de val
@@ -190,5 +191,46 @@ ciclo:	cbz x1,end
 
 end:	ldp x29,x30,[sp],#16
 	ret 
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+#Questão 7 - long int conta_inf(float *V, long int n, float lim) - x0,x1,s0
+
+s1: vector em questão
+s2: vector duplicado de lim
+s3: vector de comparação
+s4: soma do atual vector
+x5: contador 
+x4: soma do atual vector
+
+.global conta_if
+.type conta_inf, "function"
+.text
+
+conta_inf:
+	stp x29,x30,[sp,#-16]!
+	mov x5,#0		//contador
+	dup v2.4s, v0.s[0]	//vector duplicado de lim. Atenção à sintax!
+	lsr x1,x1,#2
+
+ciclo:
+	cbz x1, end
+	ldr q1,[x0],#4
+
+	cmgt v3.4s,v1.4s,v2.4s	//Não existe cmlt (compare less than)
+	addv s4, v3.4s
+	smov x4, v4.s[0]
+
+	neg x4,x4
+	add x5,x4,x5
+
+	sub x1,x1,1
+	b ciclo
+
+end:
+	mov x0,x5
+	stp x29,x30,[sp],#16
+	ret
+
 	
 
