@@ -217,7 +217,7 @@ ciclo:
 	cbz x1, end
 	ldr q1,[x0],#16
 
-	cmgt v3.4s,v1.4s,v2.4s	//Não existe cmlt (compare less than)
+	cmgt v3.4s,v2.4s,v1.4s	//Não existe cmlt (compare less than)
 	addv s4, v3.4s
 	smov x4, v4.s[0]
 
