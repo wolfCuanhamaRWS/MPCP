@@ -1,4 +1,5 @@
 #FOLHA DE PROCESSAMENTO PARALELO 
+#Atenção: atualmente o arm não faz soma horizontal em float
 
 # Questão 01 - 
 
