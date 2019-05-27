@@ -103,6 +103,27 @@ ciclo: 	cbz x2, end
 end: 	mov x0,x4
 	ldp x29,x30,[sp],#16
 	ret
+	
+#sem usar processamento paralelo 
+
+.global prodintV
+.type prodintV, "function"
+.text
+
+prodintV: 
+	stp x29,x30,[sp,#-16]!
+	mov x5, #0	//soma
+ciclo: 	
+	cbz x2, fim
+	ldr w3,[x0],#4
+	ldr w4,[x1],#4
+	smaddl x5,x4,x3,x5 //produto interno 
+	sub x2,x2,#1
+	b ciclo
+end:
+	mov x0,x5
+	ldp x29,x30,[sp],#16
+	ret 
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
