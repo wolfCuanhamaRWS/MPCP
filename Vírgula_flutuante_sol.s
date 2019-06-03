@@ -187,10 +187,10 @@ end: 		ldp x29, x30, [sp], #16
 HORNER:
 
 		stp x29, x30, [sp, #16]! 
-		ldp d1, [x0]  //d1: carrega os valores das constantes  
+		ldr d1, [x0]  //d1: carrega os valores das constantes  
 		fmul d2, d1, d0 
 		add x0,x0,#8 
-		ldp d1, [x0] 
+		ldr d1, [x0] 
 		fadd d2, d2, d1
 		sub w1, w1, 2
 		add x0, x0, #8 
