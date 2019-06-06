@@ -202,7 +202,7 @@ end:	ldp x29,x30,[sp],#16
 
 mirrorSeq: 
 	stp x29,x30,[sp,#-16]! 
-	lsr w1,w1,#2
+	lsr w1,w1,#1	# n é o número de pares
 
 ciclo:	
 	cbz w1,end
