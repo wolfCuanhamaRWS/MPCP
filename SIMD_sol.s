@@ -183,7 +183,7 @@ incsatV:
 ciclo:	cbz x1,end
 	ldr q0,[x0]
 	
-	add v0.4s,v0.4s,v2.4s	
+	addsq v0.4s,v0.4s,v2.4s	  //soma SATURADA
 	
 	str q0,[x0],#16
 	sub x1,x1,1
