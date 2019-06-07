@@ -33,8 +33,8 @@ ciclo:	cbz x4, end
 
 
 adic:	str x0,[x2],#8
-      sub x4,x4,1
-      b ciclo
+        sub x4,x4,1
+        b ciclo
 
 
 
