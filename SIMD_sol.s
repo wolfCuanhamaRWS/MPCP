@@ -218,8 +218,57 @@ ciclo:
 	sub w1,w1,1
 	b ciclo
 
-end:	
-	ldp x29,x30,[sp],#16
+end:	ldp x29,x30,[sp],#16
+	ret
+	
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+#Questão 6 - double normV(double *ptV, long int n) => x0, x1 
+
+#x9: guarda n para ser usado na soma (x1)
+#x10: guarda o endereço do primeiro elemento do vetor para ser usado na soma (x0)
+#d4: soma total 
+
+.global normV
+.type normV, "function" 
+.text 
+
+normV: 
+
+//primeiro vamos fazer v^2 para todos os componentes 
+
+	stp x29,x30,[sp,#-16]!
+
+	mov x9, x1
+	mov x10, x0
+
+	mov x3, #0	//atribuindo d4 = 0
+	scvtf d4,x3
+
+	lsr x1,x1,#1	//dimensão do vetor é multipla de 2
+
+
+ciclo: 	cbz x1,soma
+
+	ldr q0, [x0]		//terá formato v0.2d
+	fmul v0.2d,v0.2d,v0.2d 	//eleva ao quadrado
+	str q0,[x0],#16 	//guarda o resultado
+
+	sub x1,x1,1
+	b ciclo
+
+//Agora fazendo a soma de todos os componentes, já que não há uma função que faça isso com doubles (não funciona com addv)
+
+soma: 	cbz x9, end 		
+
+	ldr d1, [x10],#8
+	fadd d4,d4,d1
+	sub x9,x9,1
+
+	b soma
+
+end: 	fsqrt d4,d4
+	fmov d0,d4
 	ret
 
 
