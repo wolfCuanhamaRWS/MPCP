@@ -47,9 +47,10 @@ max_word:
 		LDR d0, X
 
 		FSQRT d0, d0
-		UCVTP d1, w0
+		UCVTF d1, w0
 		FADD d0, d0,d1
-RET 
+		
+		RET 
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Questão 2 -  Escrever um programa para calcular:
