@@ -224,6 +224,7 @@ end:	ldp x29,x30,[sp],#16
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 #Questão 6 - double normV(double *ptV, long int n) => x0, x1 
+#ATENÇÃO: ADDV NÃO FUNCIONA PARA DOUBLES
 
 #x9: guarda n para ser usado na soma (x1)
 #x10: guarda o endereço do primeiro elemento do vetor para ser usado na soma (x0)
