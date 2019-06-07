@@ -262,6 +262,37 @@ end:
 	mov x0,x5
 	stp x29,x30,[sp],#16
 	ret
+	
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Questão 8 - void ajuste ( float *X , float *Y , int n , float da )
+
+x0,x1,w2,s0
+
+.global codigo 
+.type codigo, "function" 
+.text 
+
+codigo: 
+	stp x29,x30,[sp,#-16]!
+	lsr w2,w2,#2 
+	
+ciclo: 	cbz w2, end 
+	
+	ldr q1, [x0]
+	ldr q2, [x1],#16  
+
+	fabs v1.4s, v1.4s  	// fazendo abs(x[i])
+	dup v0.4s, v0.[0]	  	
+	
+	fmul v0.4s, v0.4s, v1.4s
+	fsub v2.4s, v2.4s, v0.4s
+
+	sub w2,w2,1
+
+	str q2, [x1], #16 
+
+end:	ldp x29,x30,[sp],#16
 
 	
 
