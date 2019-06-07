@@ -1,4 +1,4 @@
-# MPCP (Microprocessadores e Compoutadores Pessoais)
+# MPCP
 Este repositório contém soluções  e referências em assembly (arm_v8) para exercícios propostos na cadeira de MPCP (microprocessadores e computadores pessoais). Além disso, contém um guia para configurar o eclipse environment para o desevolvimento da linguagem de programação. 
   
   ### Lista das fichas feitas:  
