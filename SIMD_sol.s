@@ -293,6 +293,7 @@ ciclo: 	cbz w2, end
 	str q2, [x1], #16 
 
 end:	ldp x29,x30,[sp],#16
+	ret
 
 	
 
